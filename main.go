@@ -9,16 +9,19 @@ func main() {
 	url := "http://localhost:3000/questions"
 
 	problems := questionPuller(url)
-	tobj := time.NewTimer(10 * time.Second) //4*(time.Second)
-	// problems:=getData("problems.csv")
+
+	tobj := time.NewTimer(10 * time.Second * time.Duration(len(problems))) // Time for all the questions --> 1 question => 10 seconds
+
 	correctAns := 0
 ProblemLoop:
 
 	for i, problem := range problems {
 		var answer string
-		fmt.Printf("Problem %d: %s", i+1, problem.Question)
-		fmt.Printf("\n a. %s \n b. %s \n c. %s \n d. %s \n Select Option 'a','b','c','d' : ", problem.Options.A, problem.Options.B, problem.Options.C, problem.Options.D)
+		fmt.Printf("\nProblem %d: %s", i+1, problem.Question)
+		fmt.Printf("\n a. %s \n b. %s \n c. %s \n d. %s \n Select Option 'a','b','c','d' : ",
+			problem.Options.A, problem.Options.B, problem.Options.C, problem.Options.D)
 		ansC := make(chan string)
+
 		go func() {
 			fmt.Scanf("%s", &answer)
 			ansC <- answer
