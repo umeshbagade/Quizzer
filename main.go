@@ -28,14 +28,14 @@ ProblemLoop:
 		}()
 		select {
 		case <-tobj.C:
-			fmt.Print("timer done")
+			fmt.Println("\nTime Over !!! Your Quiz has been Submitted")
 			break ProblemLoop
 		case iAns := <-ansC:
 			if iAns == problem.Answer {
 				correctAns++
 			}
 			if i == len(problems)-1 {
-				fmt.Print("Done all Questions ")
+				fmt.Print("All Questions Submitted Successfully...:) ")
 			}
 
 		}
