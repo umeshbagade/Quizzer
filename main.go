@@ -6,8 +6,7 @@ import (
 )
 
 func main() {
-	url := "http://localhost:3000/questions"
-
+	url := "https://quizzer-api-production.up.railway.app/questions"
 	problems := questionPuller(url)
 
 	tobj := time.NewTimer(10 * time.Second * time.Duration(len(problems))) // Time for all the questions --> 1 question => 10 seconds
